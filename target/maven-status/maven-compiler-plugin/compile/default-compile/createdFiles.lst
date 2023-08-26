@@ -1,0 +1,5 @@
+com\veridic\in\Dao\GassTableRequest.class
+com\veridic\in\GasApplication.class
+com\veridic\in\controller\GassController.class
+com\veridic\in\Dao\GassTableRespose.class
+com\veridic\in\service\GassService.class
