@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Station App</title>
+    <style>
+  /* Your CSS styles here */
+</style>
+</head>
+<body>
+<form id="gasForm">
+    <label for="maxGallonCapacity">Max Gallon Capacity:</label>
+    <input type="number" id="maxGallonCapacity" required>
+    <br>
+    <label for="existingGallonsInVehicle">Existing Gallons in Vehicle:</label>
+    <input type="number" id="existingGallonsInVehicle" required>
+    <br>
+    <button type="button" id="calculateButton">Calculate</button>
+</form>
+<div id="response"></div>
+
+<script>
+    document.getElementById('calculateButton').addEventListener('click', async () => {
+      const maxGallonCapacity = parseFloat(document.getElementById('maxGallonCapacity').value);
+      const existingGallonsInVehicle = parseFloat(document.getElementById('existingGallonsInVehicle').value);
+
+      const apiUrl = '/task';  // Your Spring Boot API endpoint
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          maxGallonCapacity,
+          existingNoOfVallonsInVehicl: existingGallonsInVehicle, // Adjust the field name
+        }),
+      });
+
+      const responseData = await response.json();
+      const responseDiv = document.getElementById('response');
+      responseDiv.innerHTML = `
+        <p>No. of Gallons Filled: ${responseData.noOfGallonsFilled}</p>
+        <p>Price per Gallon: ${responseData.pricePerGallon}</p>
+        <p>Transaction Date: ${responseData.transactionDate}</p>
+        <p>Total Price: ${responseData.totalPrice}</p>
+      `;
+    });
+  </script>
+</body>
+</html>

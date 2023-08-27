@@ -1,7 +1,7 @@
 package com.veridic.in.controller;
 
 import com.veridic.in.Dao.GassTableRequest;
-import com.veridic.in.Dao.GassTableRespose;
+import com.veridic.in.Dao.GassTableResponse;
 import com.veridic.in.service.GassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +14,7 @@ public class GassController
     @Autowired
    private GassService gassService;
     @PostMapping("/task")
-    public GassTableRespose result(@RequestBody GassTableRequest gassTableRequest)
+    public GassTableResponse result(@RequestBody GassTableRequest gassTableRequest)
     {
         return gassService.resultService(gassTableRequest);
     }
